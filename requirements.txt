@@ -1,0 +1,11 @@
+# Core mesh processing
+trimesh>=3.15.0
+
+# Numerical computing
+numpy>=1.21.0
+
+# 3D visualization
+plotly>=5.0.0
+
+# Additional trimesh dependencies (may be auto-installed)
+scipy>=1.7.0
