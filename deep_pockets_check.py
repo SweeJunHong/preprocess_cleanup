@@ -21,30 +21,27 @@ import trimesh
 #         return 0
 
 def estimate_pocket_depth(mesh, center, normal):
-    """Improved depth estimation that checks multiple directions"""
+    """More robust depth estimation with error handling"""
     try:
-        # Check multiple directions (not just face normal)
-        directions = [
-            normal,
-            np.array([0, 0, -1]),  # Always check downward
-            np.array([0, 0, 1]),
-            normal * np.array([1, 1, 0])  # Horizontal component
-        ]
+        # Normalize the direction vector
+        direction = normal / (np.linalg.norm(normal) + 1e-10)
         
-        max_depth = 0
-        for direction in directions:
+        # Add small offset to avoid self-intersection
+        ray_origin = center + direction * 0.01
+        
+        with np.errstate(invalid='ignore'):  # Suppress runtime warnings
             locations, _, _ = mesh.ray.intersects_location(
-                ray_origins=center.reshape(1, -1),
-                ray_directions=direction.reshape(1, -1)
+                ray_origins=[ray_origin],
+                ray_directions=[direction],
+                multiple_hits=False
             )
-            if len(locations) > 0:
-                depths = np.linalg.norm(locations - center, axis=1)
-                valid_depths = depths[depths > 0.1]
-                if len(valid_depths) > 0:
-                    max_depth = max(max_depth, np.min(valid_depths))
         
-        return max_depth
-    except:
+        if len(locations) > 0:
+            depth = np.linalg.norm(locations[0] - center)
+            return depth if depth > 0.1 else 0  # Ignore tiny depths
+        
+        return 0
+    except Exception:
         return 0
     
 def find_deep_pockets(mesh, depth_threshold=30.0, method='ray'):

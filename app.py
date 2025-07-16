@@ -7,6 +7,7 @@ from visualization import create_3d_visualization, create_summary_chart
 from report_generator import ReportGenerator
 import plotly.graph_objects as go
 
+
 # Page configuration
 st.set_page_config(
     page_title="CNC Manufacturability Analyzer",
@@ -86,7 +87,7 @@ with col1:
         try:
             st.info("Loading mesh...")
             mesh = trimesh.load(tmp_path)
-            
+          
             if isinstance(mesh, trimesh.Scene):
                 mesh = trimesh.util.concatenate(tuple(mesh.geometry.values()))
             if not isinstance(mesh, trimesh.Trimesh) or mesh.vertices.shape[0] == 0 or mesh.faces.shape[0] == 0:
