@@ -271,3 +271,14 @@ st.markdown("""
 # analyzer = CNCAnalyzer()
 # analyzer.load_mesh("part.stl")
 # results = analyzer.analyze_all()
+
+
+
+
+# cad model such as dover joint, where as there should be undercut detected, it is not detected, detected as small feature instead
+# for L bracket, small features detected for the hole
+# a t-slot stl file, where it has  should have deep pockets detected, undercuts detected, and narrow channels detected, however its not, its 50 mm in z value 
+# another question i have is why t-slot has been rated at 90% manufacturable, as when its been cut, its a 20mm width (x), 20mm height(y), and 50 mm depth(z), if taken this way, the bottom of the t-slot, thats been laid on the workstation wont be assessible by the tool,
+# if its the z value thats take to be the top, then wont deep pockets be detected ?  theres a hole in the middle of the t-slot, which is 20mm in diameter, and 50mm deep, so should it be detected as a deep pocket  
+# for a traffic cone should, it should be detected as not watertight, undercut detected since the width of the top of the cone is smaller then the bottom
+# 

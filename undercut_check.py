@@ -1,6 +1,6 @@
 import numpy as np
 import trimesh
-from geometric_context import is_tool_accessible
+
 def find_undercuts(mesh):
     """Find undercut faces in mesh - surfaces that face upward and inward."""
     face_normals = mesh.face_normals
@@ -67,19 +67,4 @@ def analyze_undercuts(mesh, use_context=True):
         'percentage': (len(undercut_indices) / len(mesh.faces)) * 100,
         'analysis_type': analysis_type,
         'severity': 'high' if len(undercut_indices) > 100 else 'medium' if len(undercut_indices) > 50 else 'low'
-    }
-    
-def detect_undercuts(mesh, tool_direction=np.array([0, 0, 1]), min_angle=100):
-    undercut_faces = []
-    for i, normal in enumerate(mesh.face_normals):
-        angle = np.degrees(np.arccos(np.clip(np.dot(normal, tool_direction), -1.0, 1.0)))
-        if angle > min_angle:
-            # Check if tool can actually reach this face
-            if not is_tool_accessible(mesh, i, tool_direction):
-                undercut_faces.append(i)
-    return {
-        "count": len(undercut_faces),
-        "severity": min(len(undercut_faces) // 10, 2),
-        "has_problem": len(undercut_faces) > 0,
-        "recommendation": "Redesign to eliminate undercuts or ensure tool access."
     }
