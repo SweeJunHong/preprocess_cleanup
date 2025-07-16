@@ -1,3 +1,5 @@
+Problems to be fixed: 
+add a mesh repair functions
 # CNC Manufacturability Analyzer
 
 A modular Python framework for analyzing STL files for CNC manufacturability issues.

@@ -26,23 +26,42 @@ def find_undercuts(mesh):
     undercut_indices = np.array(undercut_faces)
     return undercut_indices
 
+# def context_aware_undercuts(mesh):
+#     """Find undercuts that are ACTUALLY problematic with context awareness."""
+#     from geometric_context import analyze_face_context
+    
+#     face_normals = mesh.face_normals
+#     upward_faces = np.where(face_normals[:, 2] > 0.3)[0]
+    
+#     actual_undercuts = []
+    
+#     for face_idx in upward_faces:
+#         context = analyze_face_context(face_idx, mesh)
+        
+#         if not context['has_tool_access'] and not context['is_external']:
+#             actual_undercuts.append(face_idx)
+    
+#     return np.array(actual_undercuts)
+
+# In undercut_check.py
 def context_aware_undercuts(mesh):
-    """Find undercuts that are ACTUALLY problematic with context awareness."""
+    """Improved undercut detection that considers tool access from all directions"""
     from geometric_context import analyze_face_context
     
     face_normals = mesh.face_normals
-    upward_faces = np.where(face_normals[:, 2] > 0.3)[0]
+    # Don't limit to upward faces - check all directions
+    all_faces = np.arange(len(face_normals))
     
     actual_undercuts = []
     
-    for face_idx in upward_faces:
+    for face_idx in all_faces:
         context = analyze_face_context(face_idx, mesh)
         
+        # Consider it an undercut if no tool access from standard directions
         if not context['has_tool_access'] and not context['is_external']:
             actual_undercuts.append(face_idx)
     
     return np.array(actual_undercuts)
-
 def analyze_undercuts(mesh, use_context=True):
     """
     Analyze undercuts with metadata.

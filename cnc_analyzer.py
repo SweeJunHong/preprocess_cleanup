@@ -112,17 +112,19 @@ class CNCAnalyzer:
         
         return self.results
     
+    # In cnc_analyzer.py
     def calculate_score(self):
-        """Calculate overall CNC manufacturability score."""
+        """Modified scoring system with higher penalties for deep pockets"""
         score = 100
         penalties = {
-            'undercuts': {'base': 30, 'per_face': 0.5},
-            'internal_volumes': {0: 0, 1: 10, 2: 25},
+            'undercuts': {'base': 40, 'per_face': 0.8},  # Increased penalties
+            'internal_volumes': {0: 0, 1: 15, 2: 35},
             'small_features': {0: 0, 1: 5, 2: 10},
-            'steep_walls': {'base': 15, 'per_face': 0.3},
-            'narrow_channels': {'base': 20, 'per_face': 0.2},
-            'deep_pockets': {'base': 15, 'per_face': 0.3}
+            'steep_walls': {'base': 20, 'per_face': 0.4},
+            'narrow_channels': {'base': 30, 'per_face': 0.5},
+            'deep_pockets': {'base': 40, 'per_face': 1.0}  # Much higher penalty
         }
+
         
         # Calculate penalties
         if 'undercuts' in self.results:
