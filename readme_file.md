@@ -156,6 +156,13 @@ To add a new analysis:
 3. Add to `CNCAnalyzer.analyze_single_function()`
 4. Update scoring logic in `calculate_score()`
 
-## License
 
-MIT License - feel free to use and modify!
+
+## citation 
+@software{trimesh,
+	author = {{Dawson-Haggerty et al.}},
+	title = {trimesh},
+	url = {https://trimesh.org/},
+	version = {3.2.0},
+	date = {2019-12-8},
+}

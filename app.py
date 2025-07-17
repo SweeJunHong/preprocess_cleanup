@@ -6,7 +6,7 @@ from cnc_analyzer import CNCAnalyzer
 from visualization import create_3d_visualization, create_summary_chart
 from report_generator import ReportGenerator
 import plotly.graph_objects as go
-
+from mesh_utils import repair_mesh
 
 # Page configuration
 st.set_page_config(
@@ -87,9 +87,8 @@ with col1:
         try:
             st.info("Loading mesh...")
             mesh = trimesh.load(tmp_path)
-          
-            if isinstance(mesh, trimesh.Scene):
-                mesh = trimesh.util.concatenate(tuple(mesh.geometry.values()))
+            mesh, repair_log = repair_mesh(mesh)
+           
             if not isinstance(mesh, trimesh.Trimesh) or mesh.vertices.shape[0] == 0 or mesh.faces.shape[0] == 0:
                 st.error("Uploaded file could not be loaded as a valid mesh. Please check your STL file.")
                 st.stop()
