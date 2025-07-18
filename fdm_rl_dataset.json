@@ -1,0 +1,65 @@
+[
+  {
+    "manufacturing_cost": 20.057176615,
+    "time_to_completion": 0.8234,
+    "quality_metrics": {
+      "surface_finish": 76.66666666666667,
+      "dimensional_accuracy": 84.631,
+      "overall_score": 71.99108333333334
+    },
+    "material_waste": {
+      "waste_percentage": 5.0,
+      "waste_mass_grams": 0.141608,
+      "support_percentage": 15.761821366024517
+    },
+    "post_processing_requirements": {
+      "time_hours": 0.67,
+      "complexity_score": 0.3666666666666667,
+      "skill_level": "Intermediate",
+      "tools_required": 5
+    },
+    "file_path": "testcases/simple/cube.stl"
+  },
+  {
+    "manufacturing_cost": 46.17397637592533,
+    "time_to_completion": 2.205178273990898,
+    "quality_metrics": {
+      "surface_finish": 76.66762659058816,
+      "dimensional_accuracy": 78.87099274213911,
+      "overall_score": 70.55228142376997
+    },
+    "material_waste": {
+      "waste_percentage": 5.0,
+      "waste_mass_grams": 12.321831396685173,
+      "support_percentage": 17.779468230052302
+    },
+    "post_processing_requirements": {
+      "time_hours": 0.92,
+      "complexity_score": 0.5028668279524642,
+      "skill_level": "Intermediate",
+      "tools_required": 7
+    },
+    "file_path": "testcases/simple/cylinder.stl"
+  },
+  {
+    "manufacturing_cost": 32.02183887095041,
+    "time_to_completion": 1.3989034516558436,
+    "quality_metrics": {
+      "surface_finish": 75.97544993178182,
+      "dimensional_accuracy": 82.4438999241717,
+      "overall_score": 70.5802873957702
+    },
+    "material_waste": {
+      "waste_percentage": 5.0,
+      "waste_mass_grams": 4.007736909326966,
+      "support_percentage": 19.01155372178521
+    },
+    "post_processing_requirements": {
+      "time_hours": 0.67,
+      "complexity_score": 0.3666666666666667,
+      "skill_level": "Intermediate",
+      "tools_required": 5
+    },
+    "file_path": "testcases/simple/sphere.STL"
+  }
+]

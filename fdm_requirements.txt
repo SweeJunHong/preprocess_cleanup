@@ -1,0 +1,16 @@
+# FDM Additive Manufacturing Simulation Requirements
+
+# Core mesh processing (already available)
+trimesh>=3.15.0
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Additional libraries for FDM simulation
+matplotlib>=3.5.0
+pyvista>=0.37.0
+
+# Mathematical operations
+shapely>=1.8.0
+
+# Optional: for advanced slicing algorithms
+scikit-image>=0.19.0
